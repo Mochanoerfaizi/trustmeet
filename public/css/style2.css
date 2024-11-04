@@ -1,0 +1,45 @@
+.jumbotron h1 {
+    text-shadow: 1px 1px 3px rgba(1, 1, 3, 1);
+}
+
+.container.img {
+    display: flex;
+    justify-content: center; /* Menengahkan secara horizontal */
+    align-items: center; /* Menengahkan secara vertikal (opsional) */
+    height: 55vh; /* Opsional, jika Anda ingin gambar berada di tengah layar */
+}
+
+.description {
+    max-width: 850px; /* Lebar maksimum */
+    margin: 0 auto; /* Tengah kan konten */
+    text-align: center; /* Rata kiri */
+    padding: 15px; /* Padding dalam paragraf */
+    background-color: #ffffff; /* Warna latar belakang paragraf */
+    border-radius: 40px; /* Sudut bulat */
+    box-shadow: 0 4px 6px rgba(1, 186, 253, 0.1); /* Bayangan */
+}
+
+/* Styling untuk logo dan navigasi */
+nav {
+    background-color: #44b6ea;
+    padding: 1rem 0;
+}
+
+nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo styling */
+/* Menu navigasi */
+nav .nav-links {
+    display: flex;
+
+}
+
+nav .nav-links a {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
