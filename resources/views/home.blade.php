@@ -49,7 +49,7 @@
                         <a href="#" class="bg-blue-500 text-white py-2 px-6 rounded-full font-semibold hover:bg-blue-600">
                             Hubungi Kami
                         </a>
-                        <a href="#" class="bg-blue-500 text-white py-2 px-6 rounded-full font-semibold hover:bg-blue-600">
+                        <a href="{{ route('register') }}" class="bg-blue-500 text-white py-2 px-6 rounded-full font-semibold hover:bg-blue-600">
                             Daftar Sekarang
                         </a>
 
