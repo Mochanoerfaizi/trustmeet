@@ -21,14 +21,16 @@
                     <img src="images/nobgg.png" alt="Trust Meet Logo" class="w-16 h-16">
                 </div>
                 <div class="hidden md:flex nav-links space-x-6">
-                    <a class="nav-link active text-blue-700 font-semibold hover:text-blue-500" aria-current="page"
+                    <a class="nav-link active text-black font-semibold hover:text-blue-500" aria-current="page"
                         href="#home">Home</a>
-                    <a class="nav-link active text-blue-700 font-semibold hover:text-blue-500" aria-current="page"
+                    <a class="nav-link active text-black font-semibold hover:text-blue-500" aria-current="page"
                         href="#about">About Us</a>
-                    <a class="nav-link active text-blue-700 font-semibold hover:text-blue-500" aria-current="page"
+                    <a class="nav-link active text-black font-semibold hover:text-blue-500" aria-current="page"
                         href="#kontak">Contact</a>
+                    <a class="nav-link active text-black font-semibold hover:text-blue-500" aria-current="page"
+                        href="/user">Find your partner</a>
                 </div>
-                <div class="md:hidden flex items-center">
+                <div class="md:hidden flex items-center ml-auto">
                     <button id="menu-toggle" class="text-white focus:outline-none">
                         <!-- Hamburger Icon -->
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -40,18 +42,47 @@
                 </div>
 
                 <!-- Login Button (Visible on all screen sizes) -->
-                <a href="/login"
-                    class="hidden md:block text-white bg-blue-700 py-2 px-4 rounded-lg font-semibold hover:bg-blue-500">Login</a>
-            </div>
+                <div class="relative">
+                    <!-- Profile Picture -->
+                    <button id="profile-menu-toggle" class="hidden md:flex items-center focus:outline-none">
+                        <img src="images/temann.png" alt="User Profile"
+                            class="w-10 h-10 ">
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div id="profile-menu"
+                        class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
+                        <a href="/user/2" class="block px-4 py-2 text-gray-800 hover:bg-blue-100">Edit Profile</a>
+                        <a href="/logout" class="block px-4 py-2 text-gray-800 hover:bg-blue-100">Log Out</a>
+                    </div>
+                </div>
 
+                <script>
+                    // JavaScript for toggling profile dropdown menu
+                    document.getElementById('profile-menu-toggle').addEventListener('click', function () {
+                        const profileMenu = document.getElementById('profile-menu');
+                        profileMenu.classList.toggle('hidden');
+                    });
+
+
+                </script>
+
+            </div>
             <!-- Mobile Navigation Menu -->
             <div id="mobile-menu" class="md:hidden hidden flex flex-col bg-[#44b6ea] text-center text-white">
                 <a href="#home" class="py-2 text-blue-700 font-semibold hover:text-blue-500">Home</a>
                 <a href="#about" class="py-2 text-blue-700 font-semibold hover:text-blue-500">About Us</a>
                 <a href="#kontak" class="py-2 text-blue-700 font-semibold hover:text-blue-500">Contact</a>
-                <a href="/login"
-                    class="text-white bg-blue-700 py-2 px-4 mx-auto my-2 rounded-lg font-semibold hover:bg-blue-500">Login</a>
-            </div>
+                <a href="/user/1" class="py-2 text-blue-700 font-semibold hover:text-blue-500">Find your partner</a>
+                <div class="relative py-2">
+                    <!-- Profile Picture -->
+                    <button id="mobile-profile-menu-toggle"
+                        class="flex items-center justify-center mx-auto focus:outline-none">
+                        <img src="images/temann.png" alt="User Profile"
+                            class="w-10 h-10">
+                    </button>
+                </div>
+
+
         </nav>
 
         <script>
@@ -61,9 +92,9 @@
                 mobileMenu.classList.toggle('hidden');
             });
         </script>
-        <a href="/login" class="text-white bg-blue-700 py-2 px-4 rounded-lg font-semibold hover:bg-blue-500">Login</a>
         </div>
         </nav>
+
 
         <!-- Main Section with Navbar on the left and Image on the right -->
         <section class="flex flex-col md:flex-row bg-blue-300 items-center pt-36 pb-12 " id="home">
@@ -76,9 +107,6 @@
                     <!-- <a href="#" class="bg-blue-500 text-white py-2 px-6 rounded-full font-semibold hover:bg-blue-600">
                         Hubungi Kami
                     </a> -->
-                    <a href="#" class="bg-blue-500 text-white py-2 px-6 rounded-full font-semibold hover:bg-blue-600">
-                        Daftar Sekarang
-                    </a>
                 </div>
                 <p class="text-black mt-8 ">
                     "Trust Meet connects you with experienced tutors ready to support your learning journey. Whether
