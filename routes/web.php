@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Kelas;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -49,8 +50,15 @@ Route::get('/profile', function () {
 
 
 Route::get('/guru', function () {
-    return view('guru.Home');
+    $kelas = Kelas::get();
+    return view('guru.Home', compact("kelas"));
 });
+
+Route::delete('/guru/{id}', function ($id) {
+    $kelas = Kelas::find($id);
+    $kelas->delete();
+    return redirect()->back()->with('success', 'Kelas berhasil dihapus.');
+ });
 
 Route::get('/guru/1', function () {
     return view('guru.timeLine');
@@ -94,3 +102,24 @@ Route::get('/guru/10', function () {
 Route::get('/login', function () {
     return view('login');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+use App\Http\Controllers\MateriController;
+
+Route::post('/materi', [MateriController::class, 'store'])->name('materi.store');
+
+use App\Http\Controllers\KelasController;
+
+Route::post('/kelas/store', [KelasController::class, 'store'])->name('kelas.store');
+
+use App\Http\Controllers\BookingController;
+
+Route::post('/bookings', [BookingController::class, 'store'])->middleware('auth');
+
+
+use App\Http\Controllers\OrderController;
+
+Route::get('orders/create', [OrderController::class, 'create'])->name('orders.create');
+Route::post('orders', [OrderController::class, 'store'])->name('orders.store');

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <script src="https://cdn.tailwinds.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
@@ -105,6 +106,7 @@
                     src="https://storage.googleapis.com/a1aa/image/XpzFTepm4hW6M67e48rOBwitseVFiinZ5EM9bYsAhepKIqAPB.jpg"
                     width="150" />
                 <h2 class="text-lg font-bold mb-2">Learn math from scratch to advanced level</h2>
+                <p class="text-gray-500 mb-2">Tutor: Chris Wilson</p>
                 <p class="text-gray-500 mb-2">10 years</p>
                 <p class="text-blue-500 font-bold mb-2">IDR 500.000</p>
                 <button class="bg-blue-500 text-white p-2 rounded-md" onclick="openPopup()">Details</button>
@@ -123,12 +125,14 @@
                             <p><strong>Experience:</strong> 10 years</p>
                             <p><strong>Price:</strong> IDR 500.000</p>
                             <p><strong>Description:</strong> Teaching math from basic to advanced level.</p>
-                            <button class="mt-4 bg-blue-500 text-white p-2 w-20 rounded-md" onclick="closePopup()">
+                           
+                <button id = "order" type = "button" class="mt-4 bg-blue-500 text-white p-2 w-20 rounded-md">
                                 Booking
                             </button>
                             <button class="mt-4 bg-red-500 text-white p-2 rounded-md" onclick="closePopup()">
                                 Close
                             </button>
+                           
                         </div>
                     </div>
                 </div>
@@ -136,11 +140,12 @@
             </div>
             <!-- Card 2 -->
             <div class="bg-white p-4 rounded-md shadow-md card">
-                <img alt="Tutor Image" class="w-full h-48 object-cover rounded-md mb-4"
+            <img alt="Tutor Image" class="w-full h-48 object-cover rounded-md mb-4"
                     src="https://storage.googleapis.com/a1aa/image/XpzFTepm4hW6M67e48rOBwitseVFiinZ5EM9bYsAhepKIqAPB.jpg"
                     width="150" />
-                <h2 class="text-lg font-bold mb-2">Learn math from scratch to advanced level</h2>
-                <p class="text-gray-500 mb-2">10 years</p>
+                <h2 class="text-lg font-bold mb-2">Master Science Basics to Advanced Concepts</h2>
+                <p class="text-gray-500 mb-2">Tutor: Jane Smith</p>
+                <p class="text-gray-500 mb-2">8 years</p>
                 <p class="text-blue-500 font-bold mb-2">IDR 500.000</p>
                 <button class="bg-blue-500 text-white p-2 rounded-md" onclick="openPopup()">Details</button>
             </div>
@@ -149,9 +154,10 @@
                 <img alt="Tutor Image" class="w-full h-48 object-cover rounded-md mb-4"
                     src="https://storage.googleapis.com/a1aa/image/XpzFTepm4hW6M67e48rOBwitseVFiinZ5EM9bYsAhepKIqAPB.jpg"
                     width="150" />
-                <h2 class="text-lg font-bold mb-2">Learn math from scratch to advanced level</h2>
-                <p class="text-gray-500 mb-2">10 years</p>
-                <p class="text-blue-500 font-bold mb-2">IDR 500.000</p>
+                    <h2 class="text-lg font-bold mb-2">Learn English for Daily Conversation</h2>
+                    <p class="text-gray-500 mb-2">Tutor: Michael Johnson</p>
+                    <p class="text-gray-500 mb-2">Experience: 6 years</p>
+                    <p class="text-blue-500 font-bold mb-2">IDR 400.000</p>
                 <button class="bg-blue-500 text-white p-2 rounded-md" onclick="openPopup()">Details</button>
             </div>
             <!-- Card 4 -->
@@ -159,9 +165,10 @@
                 <img alt="Tutor Image" class="w-full h-48 object-cover rounded-md mb-4"
                     src="https://storage.googleapis.com/a1aa/image/XpzFTepm4hW6M67e48rOBwitseVFiinZ5EM9bYsAhepKIqAPB.jpg"
                     width="150" />
-                <h2 class="text-lg font-bold mb-2">Learn math from scratch to advanced level</h2>
-                <p class="text-gray-500 mb-2">10 years</p>
-                <p class="text-blue-500 font-bold mb-2">IDR 500.000</p>
+                    <h2 class="text-lg font-bold mb-2">History: Understanding the Past</h2>
+                    <p class="text-gray-500 mb-2">Tutor: Emily Davis</p>
+                    <p class="text-gray-500 mb-2">Experience: 9 years</p>
+                    <p class="text-blue-500 font-bold mb-2">IDR 470.000</p>
                 <button class="bg-blue-500 text-white p-2 rounded-md" onclick="openPopup()">Details</button>
             </div>
             <!-- Card 5 -->
@@ -169,9 +176,10 @@
                 <img alt="Tutor Image" class="w-full h-48 object-cover rounded-md mb-4"
                     src="https://storage.googleapis.com/a1aa/image/XpzFTepm4hW6M67e48rOBwitseVFiinZ5EM9bYsAhepKIqAPB.jpg"
                     width="150" />
-                <h2 class="text-lg font-bold mb-2">Learn math from scratch to advanced level</h2>
-                <p class="text-gray-500 mb-2">10 years</p>
-                <p class="text-blue-500 font-bold mb-2">IDR 500.000</p>
+                    <h2 class="text-lg font-bold mb-2">Physics for Beginners to Experts</h2>
+                    <p class="text-gray-500 mb-2">Tutor: Chris Wilson</p>
+                    <p class="text-gray-500 mb-2">Experience: 11 years</p>
+                    <p class="text-blue-500 font-bold mb-2">IDR 520.000</p>
                 <button class="bg-blue-500 text-white p-2 rounded-md" onclick="openPopup()">Details</button>
             </div>
             <!-- Card 6 -->
@@ -179,9 +187,10 @@
                 <img alt="Tutor Image" class="w-full h-48 object-cover rounded-md mb-4"
                     src="https://storage.googleapis.com/a1aa/image/XpzFTepm4hW6M67e48rOBwitseVFiinZ5EM9bYsAhepKIqAPB.jpg"
                     width="150" />
-                <h2 class="text-lg font-bold mb-2">Learn math from scratch to advanced level</h2>
-                <p class="text-gray-500 mb-2">10 years</p>
-                <p class="text-blue-500 font-bold mb-2">IDR 500.000</p>
+                    <h2 class="text-lg font-bold mb-2">Computer Science Fundamentals</h2>
+                    <p class="text-gray-500 mb-2">Tutor: Sarah Lee</p>
+                    <p class="text-gray-500 mb-2">Experience: 7 years</p>
+                    <p class="text-blue-500 font-bold mb-2">IDR 490.000</p>
                 <button class="bg-blue-500 text-white p-2 rounded-md" onclick="openPopup()">Details</button>
             </div>
         </div>
@@ -217,7 +226,7 @@
             }
         }
     </style>
-
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         const menuToggle = document.getElementById("menu-toggle");
         const sidebar = document.getElementById("sidebar");
@@ -244,6 +253,31 @@
                 popup.classList.add('hidden');
             }, 300);
         }
+
+        $("#order").click(function(){
+            $.ajax({
+                    url: "{{ route('orders.store') }}",
+                    method: "POST",
+                    data: {
+                        katalog_id: 2,
+                        price: 500000,
+                        _token: $('meta[name="csrf-token"]').attr('content'),
+                    },
+                    
+                    success: function (response) {
+                        alert('order sukses');
+                    },
+                    error: function (xhr) {
+                        // Tangani validasi atau error lainnya
+                        let errors = xhr.responseJSON.errors;
+                        let message = 'Error: ';
+                        for (let key in errors) {
+                            message += errors[key][0] + ' ';
+                        }
+                        $('#response-message').text(message).css('color', 'red');
+                    }
+                });
+            });
     </script>
 </body>
 

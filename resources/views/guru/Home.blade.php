@@ -117,7 +117,7 @@
         </nav>
 
         <!-- Main Content -->
-        <div class="container mx-auto p-6">
+         <div class="container mx-auto p-6">
             <!-- Section: Kelas Kamu -->
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-semibold text-gray-800">Kelas Kamu</h2>
@@ -142,59 +142,67 @@
                             class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
                             <div class="bg-white rounded-lg shadow-lg p-6 transform transition-all scale-90 opacity-0"
                                 id="popup-content">
+                                
                                 <h2 class="text-black font-bold mb-4">Buat Kelas</h2>
-                                <!-- Kontainer untuk label dan select yang sejajar -->
-                                <div class="grid grid-cols-2 gap-6 items-start">
-                                    <!-- Label dan Select pertama -->
-                                    <div class="flex flex-col">
-                                        <label class="block mb-2 font-semibold text-gray-700">Kelas</label>
-                                        <select class="w-full p-2 border text-black border-gray-300 rounded">
-                                            <option value="" disabled selected>Pilih Kelas</option>
-                                            <option value="">Kelas 1</option>
-                                            <option value="">Kelas 2</option>
-                                            <option value="">Kelas 3</option>
-                                            <option value="">Kelas 4</option>
-                                            <option value="">Kelas 5</option>
-                                            <option value="">Kelas 6</option>
-                                        </select>
+
+                                <form action="/kelas/store" method="POST">
+                                @csrf
+                                    <!-- Kontainer untuk label dan select yang sejajar -->
+                                    <div class="grid grid-cols-2 gap-6 items-start">
+                                        <!-- Label dan Select pertama -->
+                                        <div class="flex flex-col">
+                                            <label class="block mb-2 font-semibold text-gray-700">Kelas</label>
+                                            <select name="kelas" class="w-full p-2 border text-black border-gray-300 rounded">
+                                                <option value="" disabled selected>Pilih Kelas</option>
+                                                <option value="Kelas 1">Kelas 1</option>
+                                                <option value="Kelas 2">Kelas 2</option>
+                                                <option value="Kelas 3">Kelas 3</option>
+                                                <option value="Kelas 4">Kelas 4</option>
+                                                <option value="Kelas 5">Kelas 5</option>
+                                                <option value="Kelas 6">Kelas 6</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Label dan Select kedua -->
+                                        <div class="flex flex-col">
+                                            <label class="block mb-2 font-semibold text-gray-700">Kurikulum</label>
+                                            <select name="kurikulum" class="w-full p-2 border text-black border-gray-300 rounded">
+                                                <option value="" disabled selected>Pilih Kurikulum</option>
+                                                <option value="Kurikulum Merdeka">Kurikulum Merdeka</option>
+                                                <option value="Kurikulum KTSP">Kurikulum KTSP</option>
+                                                <option value="Kurikulum K13">Kurikulum K13</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Label dan Select ketiga -->
+                                        <div class="flex flex-col">
+                                            <label class="block mb-2 font-semibold text-gray-700">Mata Pelajaran</label>
+                                            <select name="mata_pelajaran" class="w-full p-2 border text-black border-gray-300 rounded">
+                                                <option value="" disabled selected>Pilih Mata Pelajaran</option>
+                                                <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+                                                <option value="Matematika">Matematika</option>
+                                                <option value="Bahasa Inggris">Bahasa Inggris</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Label dan Select keempat -->
+                                        <div class="flex flex-col">
+                                            <label class="block mb-2 font-semibold text-gray-700">Nama kelas</label>
+                                            <input name="nama_kelas" type="text" placeholder="Contoh: 12 IPA 1"
+                                                class="w-full text-black mb-4 p-2 border border-gray-300 rounded">
+                                            </select>
+                                        </div>
                                     </div>
 
-                                    <!-- Label dan Select kedua -->
-                                    <div class="flex flex-col">
-                                        <label class="block mb-2 font-semibold text-gray-700">Kurikulum</label>
-                                        <select class="w-full p-2 border text-black border-gray-300 rounded">
-                                            <option value="" disabled selected>Pilih Kurikulum</option>
-                                            <option value="">Kurikulum Merdeka</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- Label dan Select ketiga -->
-                                    <div class="flex flex-col">
-                                        <label class="block mb-2 font-semibold text-gray-700">Mata Pelajaran</label>
-                                        <select class="w-full p-2 border text-black border-gray-300 rounded">
-                                            <option value="" disabled selected>Pilih Mata Pelajaran</option>
-                                            <option value="">Bahasa Indonesia</option>
-                                            <option value="">Matematika</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- Label dan Select keempat -->
-                                    <div class="flex flex-col">
-                                        <label class="block mb-2 font-semibold text-gray-700">Nama kelas</label>
-                                        <input type="text" placeholder="Contoh: 12 IPA 1"
-                                            class="w-full text-black mb-4 p-2 border border-gray-300 rounded">
-                                        </select>
-                                    </div>
-                                </div>
 
 
-
-                                <button class="mt-4 bg-blue-500 text-white p-2 w-20 rounded-md" onclick="closePopup()">
-                                    Buat
-                                </button>
-                                <button class="mt-4 bg-red-500 text-white p-2 rounded-md" onclick="closePopup()">
-                                    Batal
-                                </button>
+                                    <button type="submit" class="mt-4 bg-blue-500 text-white p-2 w-20 rounded-md">
+                                        Buat
+                                    </button>
+                                    <button class="mt-4 bg-red-500 text-white p-2 rounded-md" onclick="closePopup()">
+                                        Batal
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -245,21 +253,28 @@
 
             <!-- Kelas Cards -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Kelas Card -->
-                <div class="bg-white p-4 rounded-lg shadow-md"
-                    style="background-image: url('images/2.jpeg'); background-size: cover; background-position: center;">
-                    <div class="flex items-center space-x-4">
-                        <div>
-                            <h3 class="text-black font-semibold">12 IPA 1</h3>
-                            <p class="text-sm text-gray-600">Bahasa Indonesia</p>
+               @foreach ($kelas as $k)
+                    <!-- Kelas Card -->
+                    <div class="bg-white p-4 rounded-lg shadow-md"
+                        style="background-image: url('images/2.jpeg'); background-size: cover; background-position: center;">
+                        <div class="flex items-center space-x-4">
+                            <div>
+                                <h3 class="text-black font-semibold">{{ $k->nama_kelas }}</h3>
+                                <p class="text-sm text-gray-600">{{ $k->mata_pelajaran }}</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <a href="/guru/{{ $k->id }}" class="bg-blue-500 text-white px-3 py-1 rounded-lg">Lihat Kelas</a>
+                            <form action="/guru/{{ $k->id }}" method="POST" onsubmit="return confirm('Hapus kelas ini?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded-lg">Hapus</button>
+                            </form>
                         </div>
                     </div>
-                    <div class="mt-4 flex justify-between items-center"><a href="/guru/1" class="bg-blue-500 text-white px-3 py-1 rounded-lg">Lihat Kelas</a>
-
-                        <button class="bg-red-500 text-white px-3 py-1 rounded-lg">Hapus</button>
-                    </div>
-                </div>
+                @endforeach
             </div>
+
 
 
             <!-- Add more classes here (replicate the above card) -->

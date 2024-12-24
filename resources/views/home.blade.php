@@ -38,11 +38,36 @@
                         </svg>
                     </button>
                 </div>
+                <div class="flex justify-end">
+                @if(auth()->check())
+                    @if(auth()->user()->role_id == 1)
+                        <a class="bg-blue-500 text-white p-2" href="/user">Go to Dashboard</a>
+                    @elseif(auth()->user()->role_id == 2)
+                        <a class="bg-blue-500 text-white  p-2" href="/guru">Go to Dashboard</a>
+                    @else
+                        <a class="bg-blue-500 text-white  p-2" href="/home">Go to Dashboard</a>
+                    @endif
+                <a  class="bg-blue-500 text-white  p-2" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                                document.getElementById('logout-form').submit();">
+                                                    {{ __('Logout') }}
+                                                </a>
 
-                <!-- Login Button (Visible on all screen sizes) -->
-                <a href="/login"
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                    @csrf
+                                                </form>
+                            </div>
+                            <!-- Login Button (Visible on all screen sizes) -->
+                        
+            @else
+                     <!-- The user is not logged in -->
+                    <a href="/login"
                     class="hidden md:block text-white bg-blue-700 py-2 px-4 rounded-lg font-semibold hover:bg-blue-500">Login</a>
-            </div>
+                @endif
+
+                
+            </div> 
+
 
             <!-- Mobile Navigation Menu -->
             <div id="mobile-menu" class="md:hidden hidden flex flex-col bg-[#44b6ea] text-center text-white">
@@ -76,7 +101,7 @@
                     <!-- <a href="#" class="bg-blue-500 text-white py-2 px-6 rounded-full font-semibold hover:bg-blue-600">
                         Hubungi Kami
                     </a> -->
-                    <a href="#" class="bg-blue-500 text-white py-2 px-6 rounded-full font-semibold hover:bg-blue-600">
+                    <a href="register" class="bg-blue-500 text-white py-2 px-6 rounded-full font-semibold hover:bg-blue-600">
                         Daftar Sekarang
                     </a>
                 </div>
@@ -118,7 +143,7 @@
 
                     <!-- Image in the Center -->
                     <div class="relative">
-                        <img class="rounded-lg" src="images/fotokitaa.png" alt="Student Studying">
+                        <img class="rounded-lg" src="images/fotokitaaa.png" alt="Student Studying">
                     </div>
 
                     <!-- Bottom Right Card -->

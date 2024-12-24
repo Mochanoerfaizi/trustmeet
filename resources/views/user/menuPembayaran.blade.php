@@ -112,6 +112,39 @@
 
     </script>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delivery, Payment, & Summary</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media (min-width: 1024px) {
+      .custom-grid {
+        display: grid;
+        grid-template-areas: 
+          "delivery payment"
+          "summary summary";
+        grid-template-columns: 2fr 1fr;
+        gap: 1.5rem;
+      }
+    }
+    @media (max-width: 1023px) {
+      .custom-grid {
+        display: grid;
+        grid-template-areas: 
+          "delivery"
+          "payment"
+          "summary";
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
 <body class="bg-gray-100">
   <div class="container mx-auto p-6">
     <!-- Progress bar -->
@@ -158,30 +191,22 @@
         </div>
       </div>
 
-      <!-- Payment Options -->
-      <div class="space-y-6" style="grid-area: payment;">
-        <h2 class="text-xl font-semibold text-gray-900">Payment</h2>
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-1">
-          <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800">
-            <div class="flex items-start">
-              <input id="credit-card" type="radio" name="payment-method" class="h-4 w-4 text-primary-600 focus:ring-2 focus:ring-primary-600">
-              <label for="credit-card" class="ml-3 text-sm font-medium text-gray-900">Credit Card</label>
+        <!-- Payment Options -->
+        <div class="space-y-6" style="grid-area: payment;">
+            <h2 class="text-xl font-semibold text-gray-900">Payment</h2>
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-1">
+            <label for="bank" class="block text-sm font-medium text-gray-700">Select Bank</label>
+            <select id="bank" class="mt-1 block w-full rounded-md border-gray-300 py-3 text-base shadow-md focus:ring-primary-500 focus:border-primary-500">
+                <option value="" disabled selected>Select a bank</option>
+                <option value="bank-abc">Bank ABC</option>
+                <option value="bank-bni">Bank BNI</option>
+                <option value="bank-bca">Bank BCA</option>
+                <option value="bank-mandiri">Bank Mandiri</option>
+                <option value="bank-bri">Bank BRI</option>
+            </select>
             </div>
-          </div>
-          <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800">
-            <div class="flex items-start">
-              <input id="pay-on-delivery" type="radio" name="payment-method" class="h-4 w-4 text-primary-600 focus:ring-2 focus:ring-primary-600">
-              <label for="pay-on-delivery" class="ml-3 text-sm font-medium text-gray-900">Pay on Delivery</label>
-            </div>
-          </div>
-          <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800">
-            <div class="flex items-start">
-              <input id="paypal" type="radio" name="payment-method" class="h-4 w-4 text-primary-600 focus:ring-2 focus:ring-primary-600">
-              <label for="paypal" class="ml-3 text-sm font-medium text-gray-900">PayPal</label>
-            </div>
-          </div>
         </div>
-      </div>
+  
 
       <!-- Summary -->
       <div style="grid-area: summary;">
@@ -212,6 +237,9 @@
       </div>
     </div>
   </div>
+</body>
+
+</html>
   <script>
         const menuToggle = document.getElementById("menu-toggle");
         const sidebar = document.getElementById("sidebar");
