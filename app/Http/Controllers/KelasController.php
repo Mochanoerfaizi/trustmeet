@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KelasController extends Controller
 {
@@ -40,7 +41,17 @@ class KelasController extends Controller
             'mata_pelajaran' => 'nullable|string',
         ]);
 
-        Kelas::create($validated);
+        $codeRandom =  str()->random(5);
+        // dd($codeRandom);
+
+        Kelas::create([
+            'user_id' => Auth::id(),
+            'kelas' => $request->kelas,
+            'nama_kelas' => $request->nama_kelas,
+            'kurikulum' => $request->kurikulum,
+            'mata_pelajaran' => $request->mata_pelajaran,
+            'code_kelas' => $codeRandom
+        ]);
 
         return redirect()->back()->with('success', 'kelas berhasil ditambahkan!');
     }

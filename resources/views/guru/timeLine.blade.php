@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trust Meet - Profile</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <script src="https://cdn.tailwinds.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +16,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <!-- <link rel="stylesheet" href="https://rsms.me/inter/inter.css"> -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- <script src="https://cdn.tailwinds.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
     <title>Trust Meet</title>
 </head>
@@ -112,8 +112,8 @@
             <div class="bg-red-600 text-white rounded-md p-8 justify-between items-center"
                 style="background-image: url('images/1.jpg'); background-size: cover; background-position: center;">
                 <div>
-                    <div class="font-semibold text-lg">12 ipa 1</div>
-                    <div class="text-sm">Bahasa Indonesia</div>
+                    <div class="font-semibold text-lg">{{$kelas->nama_kelas}}</div>
+                    <div class="text-sm">{{$kelas->mata_pelajaran}}</div>
                 </div>
                 <div class="space-x-2">
                     <button class="bg-orange-500 text-white px-4 py-2 rounded Undang-button" onclick="openPopup()">+
@@ -220,7 +220,7 @@
                 <button class="mt-2 text-teal-600 font-medium hover:underline">Instruksi undang siswa</button>
                 <!-- Kode Kelas -->
                 <div class="mt-4 bg-gray-100 p-4 rounded-lg flex items-center justify-between">
-                    <span class="text-lg font-semibold">AR5WXF4I</span>
+                    <span class="text-lg font-semibold">{{$kelas->code_kelas}}</span>
                     <button class="text-white bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-lg">Salin</button>
                 </div>
             </div>

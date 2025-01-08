@@ -2,6 +2,7 @@
 
 use App\Models\Kelas;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('home');
@@ -51,6 +52,7 @@ Route::get('/profile', function () {
 
 Route::get('/guru', function () {
     $kelas = Kelas::get();
+    // dd($kelas);
     return view('guru.Home', compact("kelas"));
 });
 
@@ -60,8 +62,10 @@ Route::delete('/guru/{id}', function ($id) {
     return redirect()->back()->with('success', 'Kelas berhasil dihapus.');
  });
 
-Route::get('/guru/1', function () {
-    return view('guru.timeLine');
+Route::get('/timeLine/{id}', function ($id) {
+    // dd($id);
+    $kelas = Kelas::find($id);
+    return view('guru.timeLine',compact('kelas'));
 });
 
 Route::get('/guru/2', function () {
@@ -123,3 +127,7 @@ use App\Http\Controllers\OrderController;
 
 Route::get('orders/create', [OrderController::class, 'create'])->name('orders.create');
 Route::post('orders', [OrderController::class, 'store'])->name('orders.store');
+
+use App\Http\Controllers\PaymentController;
+
+Route::post('/payments', [PaymentController::class, 'store'])->name('payments.store');

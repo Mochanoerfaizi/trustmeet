@@ -6,7 +6,7 @@
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdn.tailwinds.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Home</title>
 </head>
 
@@ -264,7 +264,7 @@
                             </div>
                         </div>
                         <div class="mt-4 flex justify-between items-center">
-                            <a href="/guru/{{ $k->id }}" class="bg-blue-500 text-white px-3 py-1 rounded-lg">Lihat Kelas</a>
+                            <a href="timeLine/{{ $k->id }}" class="bg-blue-500 text-white px-3 py-1 rounded-lg">Lihat Kelas</a>
                             <form action="/guru/{{ $k->id }}" method="POST" onsubmit="return confirm('Hapus kelas ini?');">
                                 @csrf
                                 @method('DELETE')

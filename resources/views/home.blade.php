@@ -6,9 +6,10 @@
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdn.tailwinds.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Home</title>
 </head>
+
 
 <body class="h-full text-white">
 

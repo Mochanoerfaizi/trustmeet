@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trust Meet - Profile</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <script src="https://cdn.tailwinds.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +16,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <!-- <link rel="stylesheet" href="https://rsms.me/inter/inter.css"> -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- <script src="https://cdn.tailwinds.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
     <style>
     @media (min-width: 1024px) {
@@ -165,78 +165,83 @@
     <!-- Main Layout -->
     <div class="bg-white p-6 rounded-lg shadow-md custom-grid">
       <!-- Delivery Details -->
-      <div class="space-y-6" style="grid-area: delivery;">
-        <h2 class="text-xl font-semibold text-gray-900">Delivery Details</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label for="name" class="block text-sm font-medium text-gray-700">Your name</label>
-            <input type="text" id="name" class="mt-1 block w-full rounded-md border-gray-300 py-3 text-base shadow-md focus:ring-primary-500 focus:border-primary-500" placeholder="Bonnie Green">
-          </div>
-          <div>
-            <label for="email" class="block text-sm font-medium text-gray-700">Your email</label>
-            <input type="email" id="email" class="mt-1 block w-full rounded-md border-gray-300 py-3 text-base shadow-md focus:ring-primary-500 focus:border-primary-500" placeholder="name@flowbite.com">
-          </div>
-          <div>
-            <label for="city" class="block text-sm font-medium text-gray-700 mt-8">City</label>
-            <select id="city" class="mt-1 block w-full rounded-md border-gray-300 py-3 text-base shadow-md focus:ring-primary-500 focus:border-primary-500">
-              <option>San Francisco</option>
-              <option>New York</option>
-              <option>Los Angeles</option>
-            </select>
-          </div>
-          <div>
-            <label for="phone" class="block text-sm font-medium text-gray-700 mt-8">Phone Number</label>
-            <input type="text" id="phone" class="mt-1 block w-full rounded-md border-gray-300 py-3 text-base shadow-md focus:ring-primary-500 focus:border-primary-500" placeholder="+1 123-456-7890">
-          </div>
-        </div>
-      </div>
+      <form action="{{ route('payments.store') }}" method="POST">
+    @csrf <!-- Token untuk mencegah CSRF -->
 
-        <!-- Payment Options -->
-        <div class="space-y-6" style="grid-area: payment;">
-            <h2 class="text-xl font-semibold text-gray-900">Payment</h2>
-            <div class="grid grid-cols-1 gap-4 md:grid-cols-1">
-            <label for="bank" class="block text-sm font-medium text-gray-700">Select Bank</label>
-            <select id="bank" class="mt-1 block w-full rounded-md border-gray-300 py-3 text-base shadow-md focus:ring-primary-500 focus:border-primary-500">
-                <option value="" disabled selected>Select a bank</option>
-                <option value="bank-abc">Bank ABC</option>
-                <option value="bank-bni">Bank BNI</option>
-                <option value="bank-bca">Bank BCA</option>
-                <option value="bank-mandiri">Bank Mandiri</option>
-                <option value="bank-bri">Bank BRI</option>
-            </select>
-            </div>
-        </div>
-  
-
-      <!-- Summary -->
-      <div style="grid-area: summary;">
-        <h2 class="text-xl font-semibold text-gray-900">Summary</h2>
-        <div class="space-y-2 mt-4">
-          <div class="flex justify-between text-sm">
-            <span>Subtotal</span>
-            <span>$8,094.00</span>
-          </div>
-          <div class="flex justify-between text-sm">
-            <span>Savings</span>
-            <span class="text-green-500">0</span>
-          </div>
-          <div class="flex justify-between text-sm">
-            <span>Store Pickup</span>
-            <span>$99</span>
-          </div>
-          <div class="flex justify-between text-sm">
-            <span>Tax</span>
-            <span>$199</span>
-          </div>
-          <div class="flex justify-between font-semibold text-gray-900 text-lg mt-4">
-            <span>Total</span>
-            <span>$8,392.00</span>
-          </div>
-        </div>
-        <button class="w-full bg-blue-600 text-white py-3 rounded-lg mt-6 hover:bg-blue-700">Proceed to Payment</button>
-      </div>
+    <!-- Pesan Sukses -->
+    @if (session('success'))
+    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
+        <p>{{ session('success') }}</p>
     </div>
-  </div>
+    @endif
+
+    <!-- Input untuk Bank -->
+    <label for="bank" class="block text-sm font-medium text-gray-700">Select Bank</label>
+    <select id="bank" name="bank_name" class="mt-1 block w-full rounded-md border-gray-300 py-3 text-base shadow-md focus:ring-primary-500 focus:border-primary-500">
+        <option value="Bank ABC">Bank ABC</option>
+        <option value="Bank BNI">Bank BNI</option>
+        <option value="Bank BCA">Bank BCA</option>
+        <option value="Bank Mandiri">Bank Mandiri</option>
+        <option value="Bank BRI">Bank BRI</option>
+    </select>
+
+    <!-- Input untuk Total Pembayaran -->
+    <label for="uang" class="block text-sm font-medium text-gray-700 mt-8">Total</label>
+    <div class="relative mt-1">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">Rp.</span>
+        <input
+            type="text"
+            id="uang"
+            name="amount"
+            class="pl-12 block w-full rounded-md border-gray-300 py-3 text-base shadow-md focus:ring-primary-500 focus:border-primary-500"
+            placeholder="Masukkan jumlah"
+        >
+    </div>
+
+    <!-- Input untuk Nama -->
+    <label for="name" class="block text-sm font-medium text-gray-700 mt-8">Your Name</label>
+    <input
+        type="text"
+        id="name"
+        name="user_name"
+        class="mt-1 block w-full rounded-md border-gray-300 py-3 text-base shadow-md focus:ring-primary-500 focus:border-primary-500"
+        placeholder="Your Name"
+    >
+
+    <!-- Input untuk Email -->
+    <label for="email" class="block text-sm font-medium text-gray-700 mt-8">Email</label>
+    <input
+        type="email"
+        id="email"
+        name="user_email"
+        class="mt-1 block w-full rounded-md border-gray-300 py-3 text-base shadow-md focus:ring-primary-500 focus:border-primary-500"
+        placeholder="name@example.com"
+    >
+
+    <!-- Input untuk Kota -->
+    <label for="city" class="block text-sm font-medium text-gray-700 mt-8">City</label>
+    <input
+        type="text"
+        id="city"
+        name="city"
+        class="mt-1 block w-full rounded-md border-gray-300 py-3 text-base shadow-md focus:ring-primary-500 focus:border-primary-500"
+        placeholder="City"
+    >
+
+    <!-- Input untuk Nomor Telepon -->
+    <label for="phone" class="block text-sm font-medium text-gray-700 mt-8">Phone Number</label>
+    <input
+        type="text"
+        id="phone"
+        name="phone"
+        class="mt-1 block w-full rounded-md border-gray-300 py-3 text-base shadow-md focus:ring-primary-500 focus:border-primary-500"
+        placeholder="+62"
+    >
+
+    <!-- Tombol Submit -->
+    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg mt-6 hover:bg-blue-700">Submit Payment</button>
+</form>
+
 </body>
 
 </html>

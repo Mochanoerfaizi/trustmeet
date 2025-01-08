@@ -26,6 +26,6 @@ class HomeController extends Controller
     {
         $kelas = Kelas::paginate(6);
 
-        return view('home', $kelas);
+        return view('home', compact('kelas'));
     }
 }

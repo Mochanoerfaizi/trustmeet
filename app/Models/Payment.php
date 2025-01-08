@@ -1,21 +1,22 @@
 <?php
 
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kelas extends Model
+class Payment extends Model
 {
     use HasFactory;
 
-    protected $table = 'kelas';
-
     protected $fillable = [
-        'code_kelas',
-        'kelas',
-        'nama_kelas',
-        'kurikulum',
-        'mata_pelajaran',
+        'bank_name',
+        'amount',
+        'user_name',
+        'user_email',
+        'city',
+        'phone',
     ];
 }
+
