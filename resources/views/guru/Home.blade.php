@@ -9,6 +9,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Home</title>
 </head>
+{{ session()->forget('kelas_id') }}
+{{-- {{ dd(session('kelas_id')) }} --}}
+{{-- {{ dd(session('key')) }} --}}
 
 <body class="h-full text-white">
 
@@ -60,12 +63,10 @@
 
                 <script>
                     // JavaScript for toggling profile dropdown menu
-                    document.getElementById('profile-menu-toggle').addEventListener('click', function () {
+                    document.getElementById('profile-menu-toggle').addEventListener('click', function() {
                         const profileMenu = document.getElementById('profile-menu');
                         profileMenu.classList.toggle('hidden');
                     });
-
-
                 </script>
 
             </div>
@@ -100,24 +101,22 @@
 
         <script>
             // JavaScript for toggling mobile menu visibility
-            document.getElementById('menu-toggle').addEventListener('click', function () {
+            document.getElementById('menu-toggle').addEventListener('click', function() {
                 const mobileMenu = document.getElementById('mobile-menu');
                 mobileMenu.classList.toggle('hidden');
             });
 
             // Menampilkan dan menyembunyikan Mobile Profile Menu
-            document.getElementById('mobile-profile-menu-toggle').addEventListener('click', function () {
+            document.getElementById('mobile-profile-menu-toggle').addEventListener('click', function() {
                 const mobileProfileMenu = document.getElementById('mobile-profile-menu');
                 mobileProfileMenu.classList.toggle('hidden');
             });
-
-
         </script>
         </div>
         </nav>
 
         <!-- Main Content -->
-         <div class="container mx-auto p-6">
+        <div class="container mx-auto p-6">
             <!-- Section: Kelas Kamu -->
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-semibold text-gray-800">Kelas Kamu</h2>
@@ -142,17 +141,18 @@
                             class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
                             <div class="bg-white rounded-lg shadow-lg p-6 transform transition-all scale-90 opacity-0"
                                 id="popup-content">
-                                
+
                                 <h2 class="text-black font-bold mb-4">Buat Kelas</h2>
 
-                                <form action="/kelas/store" method="POST">
-                                @csrf
+                                <form id="form-action" action="/kelas/store" method="POST">
+                                    @csrf
                                     <!-- Kontainer untuk label dan select yang sejajar -->
                                     <div class="grid grid-cols-2 gap-6 items-start">
                                         <!-- Label dan Select pertama -->
                                         <div class="flex flex-col">
                                             <label class="block mb-2 font-semibold text-gray-700">Kelas</label>
-                                            <select name="kelas" class="w-full p-2 border text-black border-gray-300 rounded">
+                                            <select name="kelas"
+                                                class="w-full p-2 border text-black border-gray-300 rounded">
                                                 <option value="" disabled selected>Pilih Kelas</option>
                                                 <option value="Kelas 1">Kelas 1</option>
                                                 <option value="Kelas 2">Kelas 2</option>
@@ -166,7 +166,8 @@
                                         <!-- Label dan Select kedua -->
                                         <div class="flex flex-col">
                                             <label class="block mb-2 font-semibold text-gray-700">Kurikulum</label>
-                                            <select name="kurikulum" class="w-full p-2 border text-black border-gray-300 rounded">
+                                            <select name="kurikulum"
+                                                class="w-full p-2 border text-black border-gray-300 rounded">
                                                 <option value="" disabled selected>Pilih Kurikulum</option>
                                                 <option value="Kurikulum Merdeka">Kurikulum Merdeka</option>
                                                 <option value="Kurikulum KTSP">Kurikulum KTSP</option>
@@ -176,8 +177,10 @@
 
                                         <!-- Label dan Select ketiga -->
                                         <div class="flex flex-col">
-                                            <label class="block mb-2 font-semibold text-gray-700">Mata Pelajaran</label>
-                                            <select name="mata_pelajaran" class="w-full p-2 border text-black border-gray-300 rounded">
+                                            <label class="block mb-2 font-semibold text-gray-700">Mata
+                                                Pelajaran</label>
+                                            <select name="mata_pelajaran"
+                                                class="w-full p-2 border text-black border-gray-300 rounded">
                                                 <option value="" disabled selected>Pilih Mata Pelajaran</option>
                                                 <option value="Bahasa Indonesia">Bahasa Indonesia</option>
                                                 <option value="Matematika">Matematika</option>
@@ -196,13 +199,18 @@
 
 
 
-                                    <button type="submit" class="mt-4 bg-blue-500 text-white p-2 w-20 rounded-md">
-                                        Buat
-                                    </button>
-                                    <button class="mt-4 bg-red-500 text-white p-2 rounded-md" onclick="closePopup()">
-                                        Batal
-                                    </button>
                                 </form>
+                                <button type="submit" onclick="submitForm()" class="mt-4 bg-blue-500 text-white p-2 w-20 rounded-md">
+                                    Buat
+                                </button>
+                                <button class="mt-4 bg-red-500 text-white p-2 rounded-md" onclick="closePopup()">
+                                    Batal
+                                </button>
+                                <script>
+                                    function submitForm(){
+                                        document.getElementById('form-action').submit()
+                                    }
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -248,12 +256,13 @@
 
             <!-- Search Bar -->
             <div class="mb-4">
-                <input type="text" placeholder="Cari Kelas" class="w-full p-2 border text-black border-gray-300 rounded-md">
+                <input type="text" placeholder="Cari Kelas"
+                    class="w-full p-2 border text-black border-gray-300 rounded-md">
             </div>
 
             <!-- Kelas Cards -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-               @foreach ($kelas as $k)
+                @foreach ($kelas as $k)
                     <!-- Kelas Card -->
                     <div class="bg-white p-4 rounded-lg shadow-md"
                         style="background-image: url('images/2.jpeg'); background-size: cover; background-position: center;">
@@ -264,11 +273,14 @@
                             </div>
                         </div>
                         <div class="mt-4 flex justify-between items-center">
-                            <a href="timeLine/{{ $k->id }}" class="bg-blue-500 text-white px-3 py-1 rounded-lg">Lihat Kelas</a>
-                            <form action="/guru/{{ $k->id }}" method="POST" onsubmit="return confirm('Hapus kelas ini?');">
+                            <a href="timeLine/{{ $k->id }}"
+                                class="bg-blue-500 text-white px-3 py-1 rounded-lg">Lihat Kelas</a>
+                            <form action="/kelas/{{ $k->id }}" method="POST"
+                                onsubmit="return confirm('Hapus kelas ini?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded-lg">Hapus</button>
+                                <button type="submit"
+                                    class="bg-red-500 text-white px-3 py-1 rounded-lg">Hapus</button>
                             </form>
                         </div>
                     </div>

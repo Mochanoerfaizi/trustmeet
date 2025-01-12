@@ -7,7 +7,7 @@
     <title>Trust Meet - Profile</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailUndang siswa ke kelaswind.min.css" rel="stylesheet"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
@@ -105,16 +105,17 @@
             <div class="bg-red-600 text-white rounded-md p-8 justify-between items-center"
                 style="background-image: url('images/1.jpg'); background-size: cover; background-position: center;">
                 <div>
-                    <div class="font-semibold text-lg">12 ipa 1</div>
-                    <div class="text-sm">Bahasa Indonesia</div>
+                    <div class="font-semibold text-lg">{{ $kelas->nama_kelas }}</div>
+                    <div class="text-sm">{{ $kelas->mata_pelajaran }}</div>
                 </div>
                 <div class="space-x-2">
                     <button class="bg-orange-500 text-white px-4 py-2 rounded Undang-button" onclick="openPopup()">+
-                        Undang Siswa</button>
-                    <button class="bg-white text-red-600 px-4 py-2 rounded">2 Anggota</button>
+                        Lihat kode Kelas</button>
+                    <button class="bg-white text-red-600 px-4 py-2 rounded">{{$siswa }} Anggota</button>
                 </div>
             </div>
             <!-- Timeline Section -->
+            @foreach ($materi as $materiKelas)
             <div class="mt-6 bg-white rounded-lg shadow p-6">
                 <div class="flex items-start space-x-4">
                     <!-- Icon -->
@@ -125,7 +126,7 @@
                     <!-- Content -->
                     <div class="flex-1">
                         <div class="flex justify-between items-center">
-                            <h3 class="text-base font-semibold">asasd</h3>
+                            <h3 class="text-base font-semibold">{{ $materiKelas->judul }}</h3>
                             <button class="text-gray-500 hover:text-gray-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
@@ -135,16 +136,16 @@
                             </button>
                         </div>
                         <div class="text-sm text-gray-500 flex items-center space-x-2 mt-1">
-                            <span>Tidak masuk Modul ajar</span>
+                            <span>{{ $materiKelas->modul }}</span>
                             <span>•</span>
-                            <span>Puisi</span>
+                            <span>{{ $materiKelas->topik }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500" fill="currentColor"
                                 viewBox="0 0 24 24">
                                 <path
                                     d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.5 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z" />
                             </svg>
                         </div>
-                        <p class="mt-2 text-sm text-gray-700">asdads</p>
+                        <p class="mt-2 text-sm text-gray-700">{{ $materiKelas->deskripsi }}</p>
                     </div>
                 </div>
                 <!-- Footer -->
@@ -164,7 +165,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12l2 2 4-4m1-6a9 9 0 11-8 0" />
                             </svg>
-                            <span>1 Lampiran</span>
+                            <span><a href="/download/{{ $materiKelas->fileModul }}">1 Lampiran</a></span>
                         </button>
                     </div>
                     <button class="flex items-center space-x-1 hover:text-gray-700">
@@ -177,6 +178,8 @@
                     </button>
                 </div>
             </div>
+            @endforeach
+
         </div>
     </div>
     </div>
@@ -213,7 +216,7 @@
                 <button class="mt-2 text-teal-600 font-medium hover:underline">Instruksi undang siswa</button>
                 <!-- Kode Kelas -->
                 <div class="mt-4 bg-gray-100 p-4 rounded-lg flex items-center justify-between">
-                    <span class="text-lg font-semibold">AR5WXF4I</span>
+                    <span class="text-lg font-semibold">{{ $kelas->code_kelas }}</span>
                     <button class="text-white bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-lg">Salin</button>
                 </div>
             </div>

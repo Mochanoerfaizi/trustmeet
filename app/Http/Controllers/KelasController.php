@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Order;
+use App\Models\Siswa;
+use App\Models\Materi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,7 +46,7 @@ class KelasController extends Controller
 
         $codeRandom =  str()->random(5);
         // dd($codeRandom);
-
+        // dd(Auth::id());
         Kelas::create([
             'user_id' => Auth::id(),
             'kelas' => $request->kelas,
@@ -54,5 +57,43 @@ class KelasController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'kelas berhasil ditambahkan!');
+    }
+
+    public function siswa(Request $request) {
+
+        $request->validate([
+            'kode' => 'required|string'
+        ]);
+
+
+        $cariKelas = Kelas::where('code_kelas',$request->kode)->first();
+        $idKelas = $cariKelas->id;
+        $cariSiswa = Siswa::where('kelas_id',$cariKelas->id)->count();
+        // dd($cariSiswa);
+        if($cariSiswa == 0){
+            Siswa::create([
+                'user_id' => Auth::id(),
+                'kelas_id' => $idKelas
+            ]);
+        }
+
+        return redirect()->back();
+    }
+
+
+    public function siswaIndex(){
+        $code = Order::where([['user_id',Auth::id()],['status','Dibayar']])->with('materi.kelas')->get();
+        $kelas = Siswa::where('user_id',Auth::id())->get();
+        session()->forget('kelas_id');
+        return view('siswa.gabungKelas',compact('kelas','code'));
+    }
+
+    public function kelasUser($id){
+        // session(['kelas_id' => $id]);
+        $kelas = Kelas::find($id);
+        $materi = Materi::where('kelas_id',$id)->get();
+        $siswa = Siswa::where('kelas_id',$id)->count();
+        // dd($kelas);
+        return view('siswa.timeLine',compact('materi','kelas','siswa'));
     }
 }

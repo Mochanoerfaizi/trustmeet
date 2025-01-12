@@ -17,7 +17,7 @@
                     <img src="{{ asset('images/nobgg.png') }}" alt="Trust Meet Logo" class="w-16 h-16">
                 </div>
                 <div class="hidden md:flex nav-links space-x-6">
-                    <a href="/guru"
+                    <a href="/kelas"
                         class="nav-link active flex flex-col items-center border-b-2 border-white hover:text-blue-600 rounded-md text-white font-semibold"
                         aria-current="page">
                         <img src="https://img.icons8.com/?size=100&id=PmkXCJ6t2lBA&format=png&color=000000"
@@ -67,7 +67,7 @@
             </div>
             <!-- Mobile Navigation Menu -->
             <div id="mobile-menu" class="md:hidden hidden flex flex-col bg-[#44b6ea] text-center text-white">
-                <a href="/guru"
+                <a href="/kelas"
                     class="nav-link active flex flex-col items-center text-white font-semibold hover:text-blue-500"
                     aria-current="page">
                     <img src="https://img.icons8.com/?size=100&id=PmkXCJ6t2lBA&format=png&color=000000" alt="Home Icon"

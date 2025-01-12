@@ -12,10 +12,27 @@ class Kelas extends Model
     protected $table = 'kelas';
 
     protected $fillable = [
+        'user_id',
         'code_kelas',
         'kelas',
         'nama_kelas',
         'kurikulum',
         'mata_pelajaran',
     ];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class, 'kelas_id', 'id');
+    }
+
+    public function materi()
+    {
+        return $this->hasMany(Materi::class);
+    }
 }

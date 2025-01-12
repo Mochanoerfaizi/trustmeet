@@ -25,8 +25,8 @@ class Booking extends Model
     }
 
     // Relasi dengan tutor (atau model lain, misalnya `Tutor`)
-    public function tutor()
-    {
-        return $this->belongsTo(Tutor::class);
-    }
+    // public function tutor()
+    // {
+    //     return $this->belongsTo(Tutor::class);
+    // }
 }

@@ -11,12 +11,23 @@ class Payment extends Model
     use HasFactory;
 
     protected $fillable = [
+        'order_id',
         'bank_name',
         'amount',
         'user_name',
         'user_email',
-        'city',
         'phone',
+        'provinsi',
+        'kota',
+        'kecamatan',
+        'kelurahan',
+        'bukti',
+        'status',
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }
 

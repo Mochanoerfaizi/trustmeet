@@ -14,7 +14,7 @@
     <div class="min-h-screen bg-gray-50 p-4 sm:p-8">
         <!-- Header -->
         <div class="flex justify-between items-center mb-6">
-            <h1 class="text-xl font-semibold text-gray-800">Tambah Materi</h1>
+            <h1 class="text-xl font-semibold text-gray-800">Tambahkan Gambar Sebagai Thumbnail</h1>
             <button id="close-button" class="text-gray-600 hover:text-gray-800">
                 <img src="https://img.icons8.com/ios-glyphs/30/000000/multiply.png" alt="Close">
             </button>
@@ -36,13 +36,14 @@
                         </div>
                     </div>
                     <!-- Step 2 -->
-                    <div class="flex active items-center space-x-2 border-b-2 hover:bg-gray-200 border-teal-300 font-semibold">
+                    <div
+                        class="flex active items-center space-x-2 border-b-2 hover:bg-gray-200 border-teal-300 font-semibold">
                         <div
                             class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">
                             2</div>
                         <div>
-                            <h2 class="font-semibold text-gray-800">Buat Materi</h2>
-                            <p class="text-sm text-gray-600">Tambahkan materi dari berbagai sumber</p>
+                            <h2 class="font-semibold text-gray-800">Tambahkan Gambar</h2>
+                            <p class="text-sm text-gray-600">Tambahkan gambar sebagai thumbnail</p>
                         </div>
                     </div>
                     <!-- Step 3 -->
@@ -60,30 +61,32 @@
 
             <!-- Main Content -->
             <div class="bg-white rounded-lg shadow-md p-6 lg:col-span-3">
-                <h2 class="text-lg font-semibold mb-4">Buat Materi</h2>
+                <h2 class="text-lg font-semibold mb-4">Tambah Gambar</h2>
                 <div class="bg-gray-100 p-4 rounded-lg flex items-center gap-4">
                     <div class="bg-gray-200 p-4 rounded-lg">
                         <img src="https://img.icons8.com/?size=100&id=119436&format=png&color=000000" alt="Icon"
                             class="w-12 h-12">
                     </div>
                     <div>
-                        <p class="text-gray-600">Belum ada materi</p>
-                        <p class="text-sm text-gray-500">Tekan "Tambah Materi" untuk menambahkan materi belajar</p>
+                        <p class="text-gray-600">Gambar Thumbnail</p>
+                        <p class="text-sm text-gray-500">Tekan "Tambah Gambar" untuk menambahkan gambar</p>
                     </div>
                 </div>
                 <div class="flex flex-wrap gap-4 mt-4">
-                    <button id="tambah-materi-btn"
-                        class="bg-orange-500 hover:bg-orange-400 text-white px-4 py-2 rounded-lg flex items-center gap-2">
-                        <span class="text-xl">+</span> Tambah Materi
+                    <form id="form-action" action="{{ route('tambahMateri3') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="gambar"
+                            class="bg-orange-500 hover:bg-orange-400 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+                    </form>
                     </button>
-                    <button
+                    {{-- <button
                         class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-orange-200">
                         <a href="https://sites.google.com/ruangguru.com/ruangkelas-pptpembelajaran/materi-sd/kelas-6-bahasa-indonesia"
                             target="_blank" class=" flex items-center gap-2">
                             <span class="text-xl">🔍</span> Cari PPT Pembelajaran
                         </a>
 
-                    </button>
+                    </button> --}}
                 </div>
                 <div class="flex flex-wrap justify-between mt-6 gap-4">
                     <p class=" px-4 py-2"></p>
@@ -91,9 +94,13 @@
                         <a href="/guru/6"
                             class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg hover:bg-orange-200">Kembali
                             ke Detail Materi</a>
-                        <button class="bg-gray-200 text-gray-500 px-4 py-2 rounded-lg">Lanjut Bagikan Materi</button>
+                        <button onclick="submit()" class="bg-orange-200 text-orange-500 px-4 py-2 rounded-lg">Lanjut Isi Form</button>
+                        <script>
+                            function submit(){
+                                document.getElementById('form-action').submit();
+                            }
+                        </script>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -104,8 +111,10 @@
             <p class="mb-4 text-gray-700">Apakah Anda yakin akan keluar?</p>
             <p class="mb-4 text-gray-700">Perubahan di halaman ini tidak akan tersimpan.</p>
             <div class="flex justify-center gap-4">
-                <button id="cancel-button" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-700">Tidak</button>
-                <button id="confirm-button" class="px-4 py-2 bg-orange-500 hover:bg-orange-400 text-white rounded-lg">Ya</button>
+                <button id="cancel-button"
+                    class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-700">Tidak</button>
+                <button id="confirm-button"
+                    class="px-4 py-2 bg-orange-500 hover:bg-orange-400 text-white rounded-lg">Ya</button>
             </div>
         </div>
     </div>
@@ -128,7 +137,6 @@
             // Arahkan ke menu awal
             window.location.href = "/guru/2"; // Ganti dengan URL atau file menu awal
         });
-
     </script>
 
     <!-- Popup Dialog -->
@@ -142,7 +150,8 @@
             <div class="space-y-4">
 
                 <!-- Tombol "Unggah Materi" -->
-                <button id="unggah-materi-btn" class="w-full flex items-center gap-4 px-4 py-2 bg-blue-100 hover:bg-blue-200 rounded-lg">
+                <button id="unggah-materi-btn"
+                    class="w-full flex items-center gap-4 px-4 py-2 bg-blue-100 hover:bg-blue-200 rounded-lg">
                     <img src="https://img.icons8.com/?size=100&id=113794&format=png&color=000000" alt="Icon"
                         class="w-10 h-10">
                     <div>
@@ -168,12 +177,12 @@
             <div class="space-y-4">
                 <div class="bg-gray-100 p-3 rounded-lg text-center">
 
-                        <!-- Tombol Tambah Materi -->
-                        <label for="file-upload"
-                            class="bg-orange-500 w-full justify-center text-white px-4 py-2 rounded-lg hover:bg-orange-400 flex items-center gap-2 cursor-pointer">
-                            <span class="text-xl">+</span> Unggah Materi
-                        </label>
-                        <input id="file-upload" type="file" class="hidden" />
+                    <!-- Tombol Tambah Materi -->
+                    <label for="file-upload"
+                        class="bg-orange-500 w-full justify-center text-white px-4 py-2 rounded-lg hover:bg-orange-400 flex items-center gap-2 cursor-pointer">
+                        <span class="text-xl">+</span> Unggah Materi
+                    </label>
+                    <input id="file-upload" type="file" class="hidden" />
 
                     <ul class="text-sm text-gray-600 mt-2">
                         <li>• Maksimal file 10MB dengan format .jpg, .jpeg, .png.</li>
@@ -186,8 +195,10 @@
                         class="w-full border-gray-300 shadow-sm mt-2">
                 </div>
                 <div class="flex justify-end gap-4">
-                    <button id="batal-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-500 px-4 py-2 rounded-lg">Batal</button>
-                    <button class="bg-orange-500 hover:bg-orange-400 text-white px-4 py-2 rounded-lg">Tambah File</button>
+                    <button id="batal-btn"
+                        class="bg-gray-200 hover:bg-gray-300 text-gray-500 px-4 py-2 rounded-lg">Batal</button>
+                    <button class="bg-orange-500 hover:bg-orange-400 text-white px-4 py-2 rounded-lg">Tambah
+                        File</button>
                 </div>
             </div>
         </div>
@@ -195,7 +206,6 @@
 
 
     <script>
-
         // Ambil elemen dialog utama
         const popupDialog = document.getElementById('popup-dialog');
         const closePopupBtn = document.getElementById('close-popup-btn');
@@ -234,8 +244,6 @@
                 unggahMateriDialog.classList.add('hidden');
             }
         });
-
-
     </script>
 
 

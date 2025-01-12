@@ -37,7 +37,7 @@
         <nav>
             <ul class="space-y-4">
                 <li>
-                    <a href="/guru" class="flex items-center p-2 rounded-md hover:bg-blue-600">
+                    <a href="/kelas" class="flex items-center p-2 rounded-md hover:bg-blue-600">
                         <img src="https://img.icons8.com/?size=100&id=dJTZMvvYZzxA&format=png&color=000000"
                             class="w-6 h-6" alt="Icon">
                         <span class="ml-2">Home</span>
@@ -73,7 +73,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/guru/5" class="flex items-center p-2 rounded-md hover:bg-blue-600">
+                    <a href="/guru/pembayaran" class="flex items-center p-2 rounded-md hover:bg-blue-600">
                         <img src="https://img.icons8.com/?size=100&id=bpb1NWfrmmHv&format=png&color=000000"
                             class="w-6 h-6" alt="Icon">
                         <span class="ml-2">Daftar Pesanan</span>
@@ -106,7 +106,7 @@
 
     </script>
 
-    <!-- Main Content -->
+        <!-- Main Content -->
     <div class=" w-screen  items-center justify-center p-9">
         <div class="w-full  bg-white rounded-lg shadow-lg p-6">
             <div class="bg-red-600 text-white rounded-md p-8 justify-between items-center"
@@ -118,10 +118,12 @@
                 <div class="space-x-2">
                     <button class="bg-orange-500 text-white px-4 py-2 rounded Undang-button" onclick="openPopup()">+
                         Undang Siswa</button>
-                    <button class="bg-white text-red-600 px-4 py-2 rounded">2 Anggota</button>
+                    <button class="bg-white text-red-600 px-4 py-2 rounded">{{ $siswa->count() }} Anggota</button>
                 </div>
             </div>
             <!-- Timeline Section -->
+            @foreach ($materi as $tampilMateri)
+                
             <div class="mt-6 bg-white rounded-lg shadow p-6">
                 <div class="flex items-start space-x-4">
                     <!-- Icon -->
@@ -132,7 +134,7 @@
                     <!-- Content -->
                     <div class="flex-1">
                         <div class="flex justify-between items-center">
-                            <h3 class="text-base font-semibold">asasd</h3>
+                            <h3 class="text-base font-semibold">{{ $tampilMateri->judul }}</h3>
                             <button class="text-gray-500 hover:text-gray-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
@@ -142,16 +144,16 @@
                             </button>
                         </div>
                         <div class="text-sm text-gray-500 flex items-center space-x-2 mt-1">
-                            <span>Tidak masuk Modul ajar</span>
+                            <span>{{ $tampilMateri->modul }}</span>
                             <span>•</span>
-                            <span>Puisi</span>
+                            <span>{{ $tampilMateri->topik }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500" fill="currentColor"
                                 viewBox="0 0 24 24">
                                 <path
                                     d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.5 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z" />
                             </svg>
                         </div>
-                        <p class="mt-2 text-sm text-gray-700">asdads</p>
+                        <p class="mt-2 text-sm text-gray-700">{{ $tampilMateri->deskripsi }}</p>
                     </div>
                 </div>
                 <!-- Footer -->
@@ -184,6 +186,8 @@
                     </button>
                 </div>
             </div>
+            @endforeach
+            
         </div>
     </div>
     </div>

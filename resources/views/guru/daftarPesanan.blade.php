@@ -37,14 +37,14 @@
         <nav>
             <ul class="space-y-4">
             <li>
-                    <a href="/guru" class="flex items-center p-2 rounded-md hover:bg-blue-600">
+                    <a href="/kelas" class="flex items-center p-2 rounded-md hover:bg-blue-600">
                         <img src="https://img.icons8.com/?size=100&id=dJTZMvvYZzxA&format=png&color=000000"
                             class="w-6 h-6" alt="Icon">
                         <span class="ml-2">Home</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/guru/1" class="flex items-center p-2 rounded-md hover:bg-blue-600">
+                    <a href="/timeLine/{{ session('kelas_id') }}" class="flex items-center p-2 rounded-md hover:bg-blue-600">
                         <img src="https://img.icons8.com/?size=100&id=IU3ZdsRY0p85&format=png&color=000000"
                             class="w-6 h-6" alt="Icon">
                         <span class="ml-2">TimeLine</span>
@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="guru/3" class="flex items-center p-2 rounded-md hover:bg-blue-600">
+                    <a href="/guru/3" class="flex items-center p-2 rounded-md hover:bg-blue-600">
                         <img src="https://img.icons8.com/?size=100&id=118380&format=png&color=000000" class="w-6 h-6"
                             alt="Icon">
                         <span class="ml-2">Obrolan Kelas</span>
@@ -125,22 +125,32 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($pembayaran as $no=> $tampilPembayaran)
+                    @if ($tampilPembayaran->payment->status == 'Menunggu')
+                        
                     <tr>
-                        <td class="px-4 py-2 border border-gray-300 text-center">1</td>
-                        <td class="px-4 py-2 border border-gray-300">andry</td>
-                        <td class="px-4 py-2 border border-gray-300">2024-11-22</td>
-                        <td class="px-4 py-2 border border-gray-300">0819-1792-6078</td>
-                        <td class="px-4 py-2 border border-gray-300 text-right">480000</td>
+                        <td class="px-4 py-2 border border-gray-300 text-center">{{ $no+1 }}</td>
+                        <td class="px-4 py-2 border border-gray-300">{{ $tampilPembayaran->payment->user_name }}</td>
+                        <td class="px-4 py-2 border border-gray-300">{{ $tampilPembayaran->payment->updated_at }}</td>
+                        <td class="px-4 py-2 border border-gray-300">{{ $tampilPembayaran->payment->phone }}</td>
+                        <td class="px-4 py-2 border border-gray-300 text-right">Rp.{{ $tampilPembayaran->payment->amount }}</td>
                         <td class="px-4 py-2 border border-gray-300">
-                            <img src="https://via.placeholder.com/50" alt="Bukti"
+                            <img src="{{ asset('storage/'.$tampilPembayaran->payment->bukti) }}" alt="Bukti"
                                 class="w-12 h-12 object-cover mx-auto" />
                         </td>
                         <td class="px-4 py-2 border border-gray-300 text-center">
                             <span class="block mb-2">Sudah Bayar</span>
-                            <button class="bg-green-500 text-white px-2 py-1 rounded mb-1">Konfir</button>
+                            <form id="Form-Konfirmasi" action="{{ route('orders.kirimKode') }}" method="POST">
+                                @csrf
+                                <input type="text" name="user_id" value="{{ $tampilPembayaran->user_id }}" style="display:none">
+                                <input type="text" name="materi_id" value="{{ $tampilPembayaran->materi_id }}" style="display:none">
+                                <button id="konfirmasi" class="bg-green-500 text-white px-2 py-1 rounded mb-1">Konfir</button>
+                            </form>
                             <button class="bg-red-500 text-white px-2 py-1 rounded">Hapus</button>
                         </td>
                     </tr>
+                    @endif
+                    @endforeach
                 </tbody>
             </table>
         </div>

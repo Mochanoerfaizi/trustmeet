@@ -37,7 +37,7 @@
         <nav>
             <ul class="space-y-4">
             <li>
-                    <a href="/guru" class="flex items-center p-2 rounded-md hover:bg-blue-600">
+                    <a href="/kelas" class="flex items-center p-2 rounded-md hover:bg-blue-600">
                         <img src="https://img.icons8.com/?size=100&id=dJTZMvvYZzxA&format=png&color=000000"
                             class="w-6 h-6" alt="Icon">
                         <span class="ml-2">Home</span>
@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/guru/5" class="flex items-center p-2 rounded-md hover:bg-blue-600">
+                    <a href="/guru/pembayaran" class="flex items-center p-2 rounded-md hover:bg-blue-600">
                         <img src="https://img.icons8.com/?size=100&id=bpb1NWfrmmHv&format=png&color=000000"
                             class="w-6 h-6" alt="Icon">
                         <span class="ml-2">Daftar Pesanan</span>
@@ -110,7 +110,7 @@
             <div class="flex space-x-6">
                 <button class="border-b-2 border-teal-500 text-teal-500 font-semibold">Daftar Materi</button>
             </div>
-            <button onclick="location.href='/guru/6';"
+            <button onclick="location.href='/tambahMateri/1';"
                 class=" bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-600">
                 Tambah Materi
             </button>

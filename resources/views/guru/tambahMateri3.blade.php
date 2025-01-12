@@ -46,7 +46,8 @@
                         </div>
                     </div>
                     <!-- Step 3 -->
-                    <div class="flex active items-center space-x-2 border-b-2 hover:bg-gray-200 border-teal-300 font-semibold">
+                    <div
+                        class="flex active items-center space-x-2 border-b-2 hover:bg-gray-200 border-teal-300 font-semibold">
                         <div
                             class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">
                             3</div>
@@ -63,51 +64,64 @@
                 <h2 class="text-lg font-semibold mb-4">Buat Materi</h2>
                 <!-- Daftar File -->
                 <div id="uploaded-files" class="mt-4 space-y-4">
-    <!-- Contoh file -->
-    <div class="flex items-center justify-between bg-white-100 p-4 rounded-lg">
-        <div class="flex items-center space-x-4">
-            <img src="https://img.icons8.com/fluency-systems-regular/48/000000/pdf.png" alt="PDF Icon" class="w-10 h-10">
-            <div>
-                <p class="font-semibold text-gray-800">File Contoh.pdf</p>
-                <p class="text-sm text-gray-600">PDF</p>
-            </div>
-        </div>
-        <div class="flex space-x-4">
-            <button class="flex items-center space-x-2 bg-gray-100 text-black px-4 py-2 rounded-lg hover:bg-gray-300 transition">
-                <img src="https://img.icons8.com/?size=100&id=30M9wv1iFkcH&format=png&color=000000" alt="Preview Icon" class="w-5 h-5">
-                <span>Pratinjau</span>
-            </button>
-            <button class="flex items-center space-x-2 bg-gray-100 text-black px-4 py-2 rounded-lg hover:bg-red-300 transition">
-                <img src="https://img.icons8.com/?size=100&id=4887&format=png&color=000000" alt="Preview Icon" class="w-5 h-5">
-                <span>Hapus</span>
-            </button>
-        </div>
-    </div>
-</div>
+                    <!-- Contoh file -->
+                    <div class="flex items-center justify-between bg-white-100 p-4 rounded-lg">
+                        <div class="flex items-center space-x-4">
+                            <img src="https://img.icons8.com/fluency-systems-regular/48/000000/pdf.png" alt="PDF Icon"
+                                class="w-10 h-10">
+                            <div>
+                                <p class="font-semibold text-gray-800">File Contoh.pdf</p>
+                                <p class="text-sm text-gray-600">PDF</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button
+                                class="flex items-center space-x-2 bg-gray-100 text-black px-4 py-2 rounded-lg hover:bg-gray-300 transition">
+                                <img src="https://img.icons8.com/?size=100&id=30M9wv1iFkcH&format=png&color=000000"
+                                    alt="Preview Icon" class="w-5 h-5">
+                                <span>Pratinjau</span>
+                            </button>
+                            <button
+                                class="flex items-center space-x-2 bg-gray-100 text-black px-4 py-2 rounded-lg hover:bg-red-300 transition">
+                                <img src="https://img.icons8.com/?size=100&id=4887&format=png&color=000000"
+                                    alt="Preview Icon" class="w-5 h-5">
+                                <span>Hapus</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
 
                 <div class="flex flex-wrap gap-4 mt-4">
-                    <button id="tambah-materi-btn"
-                        class="bg-orange-500 hover:bg-orange-400 text-white px-4 py-2 rounded-lg flex items-center gap-2">
-                        <span class="text-xl">+</span> Tambah Materi
-                    </button>
+                    <form id="form-action" action="{{ route('createTambahMateri') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="fileModul"
+                            class="bg-orange-500 hover:bg-orange-400 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+                    </form>
+                    {{-- <span class="text-xl">+</span> Tambah Materi --}}
+                    {{-- </input> --}}
                     <button
-                        class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-orange-200">
+                    class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-orange-200">
                         <a href="https://sites.google.com/ruangguru.com/ruangkelas-pptpembelajaran/materi-sd/kelas-6-bahasa-indonesia"
-                            target="_blank" class=" flex items-center gap-2">
+                        target="_blank" class=" flex items-center gap-2">
                             <span class="text-xl">🔍</span> Cari PPT Pembelajaran
                         </a>
-
                     </button>
                 </div>
                 <div class="flex flex-wrap justify-between mt-6 gap-4">
                     <p class=" px-4 py-2"></p>
                     <div class="flex gap-4 px-4 py-2">
                         <a href="/guru/6"
-                            class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg hover:bg-orange-200">Kembali
+                        class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg hover:bg-orange-200">Kembali
                             ke Detail Materi</a>
-                        <button class="bg-gray-200 text-gray-500 px-4 py-2 rounded-lg">Lanjut Bagikan Materi</button>
+                        <button type="button" onclick="submit()" class="bg-gray-200 text-gray-500 px-4 py-2 rounded-lg">Lanjut Bagikan
+                            Materi</button>
                     </div>
+                        <script>
+                            function submit() {
+                                document.getElementById('form-action').submit()
+                            }
+                        </script>
 
                 </div>
             </div>
@@ -119,8 +133,10 @@
             <p class="mb-4 text-gray-700">Apakah Anda yakin akan keluar?</p>
             <p class="mb-4 text-gray-700">Perubahan di halaman ini tidak akan tersimpan.</p>
             <div class="flex justify-center gap-4">
-                <button id="cancel-button" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-700">Tidak</button>
-                <button id="confirm-button" class="px-4 py-2 bg-orange-500 hover:bg-orange-400 text-white rounded-lg">Ya</button>
+                <button id="cancel-button"
+                    class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-700">Tidak</button>
+                <button id="confirm-button"
+                    class="px-4 py-2 bg-orange-500 hover:bg-orange-400 text-white rounded-lg">Ya</button>
             </div>
         </div>
     </div>
@@ -143,7 +159,6 @@
             // Arahkan ke menu awal
             window.location.href = "/guru/2"; // Ganti dengan URL atau file menu awal
         });
-
     </script>
 
     <!-- Popup Dialog -->
@@ -157,7 +172,8 @@
             <div class="space-y-4">
 
                 <!-- Tombol "Unggah Materi" -->
-                <button id="unggah-materi-btn" class="w-full flex items-center gap-4 px-4 py-2 bg-blue-100 hover:bg-blue-200 rounded-lg">
+                <button id="unggah-materi-btn"
+                    class="w-full flex items-center gap-4 px-4 py-2 bg-blue-100 hover:bg-blue-200 rounded-lg">
                     <img src="https://img.icons8.com/?size=100&id=113794&format=png&color=000000" alt="Icon"
                         class="w-10 h-10">
                     <div>
@@ -183,12 +199,12 @@
             <div class="space-y-4">
                 <div class="bg-gray-100 p-3 rounded-lg text-center">
 
-                        <!-- Tombol Tambah Materi -->
-                        <label for="file-upload"
-                            class="bg-orange-500 w-full justify-center text-white px-4 py-2 rounded-lg hover:bg-orange-400 flex items-center gap-2 cursor-pointer">
-                            <span class="text-xl">+</span> Unggah Materi
-                        </label>
-                        <input id="file-upload" type="file" class="hidden" />
+                    <!-- Tombol Tambah Materi -->
+                    <label for="file-upload"
+                        class="bg-orange-500 w-full justify-center text-white px-4 py-2 rounded-lg hover:bg-orange-400 flex items-center gap-2 cursor-pointer">
+                        <span class="text-xl">+</span> Unggah Materi
+                    </label>
+                    <input id="file-upload" type="file" class="hidden" />
 
                     <ul class="text-sm text-gray-600 mt-2">
                         <li>• Maksimal file 10MB dengan format .jpg, .jpeg, .png.</li>
@@ -201,8 +217,10 @@
                         class="w-full border-gray-300 shadow-sm mt-2">
                 </div>
                 <div class="flex justify-end gap-4">
-                    <button id="batal-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-500 px-4 py-2 rounded-lg">Batal</button>
-                    <button class="bg-orange-500 hover:bg-orange-400 text-white px-4 py-2 rounded-lg">Tambah File</button>
+                    <button id="batal-btn"
+                        class="bg-gray-200 hover:bg-gray-300 text-gray-500 px-4 py-2 rounded-lg">Batal</button>
+                    <button class="bg-orange-500 hover:bg-orange-400 text-white px-4 py-2 rounded-lg">Tambah
+                        File</button>
                 </div>
             </div>
         </div>
@@ -212,7 +230,6 @@
 
 
     <script>
-
         // Ambil elemen dialog utama
         const popupDialog = document.getElementById('popup-dialog');
         const closePopupBtn = document.getElementById('close-popup-btn');
@@ -251,8 +268,6 @@
                 unggahMateriDialog.classList.add('hidden');
             }
         });
-
-
     </script>
 
 

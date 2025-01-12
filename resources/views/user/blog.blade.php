@@ -43,12 +43,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class=" active flex items-center p-2 rounded-md hover:bg-blue-600 border-b-2 border-white">
+                    <a href="#"
+                        class=" active flex items-center p-2 rounded-md hover:bg-blue-600 border-b-2 border-white">
                         <i class="fas fa-search mr-2"></i> Find your partner
                     </a>
                 </li>
                 <li>
-                    <a href="/user/1" class="flex items-center p-2 rounded-md hover:bg-blue-600">
+                    <a href="user/pembayaran" class="flex items-center p-2 rounded-md hover:bg-blue-600">
                         <i class="fas fa-envelope mr-2"></i> Menu Pembayaran
                     </a>
                 </li>
@@ -81,12 +82,10 @@
 
     <script>
         // JavaScript for toggling profile dropdown menu
-        document.getElementById('profile-menu-toggle').addEventListener('click', function () {
+        document.getElementById('profile-menu-toggle').addEventListener('click', function() {
             const profileMenu = document.getElementById('profile-menu');
             profileMenu.classList.toggle('hidden');
         });
-
-
     </script>
 
     <!-- Main Content -->
@@ -101,98 +100,49 @@
         </div>
         <div class="box grid grid-cols-3 gap-4">
             <!-- Card 1 -->
-            <div class="bg-white p-4 rounded-md shadow-md card">
-                <img alt="Tutor Image" class="w-full h-48 object-cover rounded-md mb-4"
-                    src="https://storage.googleapis.com/a1aa/image/XpzFTepm4hW6M67e48rOBwitseVFiinZ5EM9bYsAhepKIqAPB.jpg"
-                    width="150" />
-                <h2 class="text-lg font-bold mb-2">Learn math from scratch to advanced level</h2>
-                <p class="text-gray-500 mb-2">Tutor: Chris Wilson</p>
-                <p class="text-gray-500 mb-2">10 years</p>
-                <p class="text-blue-500 font-bold mb-2">IDR 500.000</p>
-                <button class="bg-blue-500 text-white p-2 rounded-md" onclick="openPopup()">Details</button>
-                <!-- Popup Modal -->
-                <div id="popup" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
-                    <div class="bg-white rounded-lg shadow-lg p-6 transform transition-all scale-90 opacity-0"
-                        id="popup-content">
-                        <!-- Kiri: Foto Tutor -->
-                        <div class="flex items-left p-6">
-                            <img src="{{ asset('images/temann.png') }}" alt="Tutor Photo" class="w-32 h-32 rounded-full">
-                        </div>
-                        <!-- Kanan: Detail Tutor -->
-                        <div class="flex-1 p-6">
-                            <h2 class="text-xl font-bold mb-4">Tutor Details</h2>
-                            <p><strong>Name:</strong> John Doe</p>
-                            <p><strong>Experience:</strong> 10 years</p>
-                            <p><strong>Price:</strong> IDR 500.000</p>
-                            <p><strong>Description:</strong> Teaching math from basic to advanced level.</p>
-                           
-                <button id = "order" type = "button" class="mt-4 bg-blue-500 text-white p-2 w-20 rounded-md">
-                                Booking
-                            </button>
-                            <button class="mt-4 bg-red-500 text-white p-2 rounded-md" onclick="closePopup()">
-                                Close
-                            </button>
-                           
+            @foreach ($materi as $tampilMateri)
+                <div class="bg-white p-4 rounded-md shadow-md card">
+                    <img alt="Tutor Image" class="w-full h-48 object-cover rounded-md mb-4"
+                        src="{{ asset('storage/public/gambar/' . $tampilMateri->gambar) }}" width="150" />
+                    <h2 class="text-lg font-bold mb-2">{{ $tampilMateri->judul }}</h2>
+                    <p class="text-gray-500 mb-2">Tutor: {{ $tampilMateri->user->name }}</p>
+                    <p class="text-gray-500 mb-2">{{ $tampilMateri->deskripsi }}</p>
+                    <p class="text-blue-500 font-bold mb-2">{{ $tampilMateri->harga }}</p>
+                    <button class="bg-blue-500 text-white p-2 rounded-md"
+                        onclick="openPopup('{{ $tampilMateri->id }}')">Details</button>
+
+                    <!-- Popup Modal -->
+                    <div id="popup-{{ $tampilMateri->id }}"
+                        class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+                        <div class="bg-white min-w-[400px] rounded-lg shadow-lg p-6 transform transition-all scale-90 opacity-0"
+                            id="popup-content-{{ $tampilMateri->id }}">
+                            <div class="flex items-left p-6">
+                                <img src="{{ asset('images/temann.png') }}" alt="Tutor Photo"
+                                    class="w-32 h-32 rounded-full">
+                            </div>
+                            <div class="flex-1 p-6">
+                                <h2 class="text-xl font-bold mb-4">Tutor Details</h2>
+                                <p><strong>Name:</strong> {{ $tampilMateri->user->name }}</p>
+                                <p><strong>Experience:</strong> 10 years</p>
+                                <p><strong>Price:</strong> {{ $tampilMateri->harga }}</p>
+                                <p><strong>Description:</strong> {{ $tampilMateri->deskripsi }}</p>
+
+                                <form id="form-action-{{ $tampilMateri->id }}"
+                                    action="{{ route('userBokingMateri', ['id' => $tampilMateri->id]) }}"
+                                    method="POST">
+                                    @csrf
+                                </form>
+
+                                <button type="button" onclick="boking('{{ $tampilMateri->id }}')"
+                                    class="mt-4 bg-blue-500 text-white p-2 w-20 rounded-md">Booking</button>
+                                <button class="mt-4 bg-red-500 text-white p-2 rounded-md"
+                                    onclick="closePopup('{{ $tampilMateri->id }}')">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+            @endforeach
 
-            </div>
-            <!-- Card 2 -->
-            <div class="bg-white p-4 rounded-md shadow-md card">
-            <img alt="Tutor Image" class="w-full h-48 object-cover rounded-md mb-4"
-                    src="https://storage.googleapis.com/a1aa/image/XpzFTepm4hW6M67e48rOBwitseVFiinZ5EM9bYsAhepKIqAPB.jpg"
-                    width="150" />
-                <h2 class="text-lg font-bold mb-2">Master Science Basics to Advanced Concepts</h2>
-                <p class="text-gray-500 mb-2">Tutor: Jane Smith</p>
-                <p class="text-gray-500 mb-2">8 years</p>
-                <p class="text-blue-500 font-bold mb-2">IDR 500.000</p>
-                <button class="bg-blue-500 text-white p-2 rounded-md" onclick="openPopup()">Details</button>
-            </div>
-            <!-- Card 3 -->
-            <div class="bg-white p-4 rounded-md shadow-md card">
-                <img alt="Tutor Image" class="w-full h-48 object-cover rounded-md mb-4"
-                    src="https://storage.googleapis.com/a1aa/image/XpzFTepm4hW6M67e48rOBwitseVFiinZ5EM9bYsAhepKIqAPB.jpg"
-                    width="150" />
-                    <h2 class="text-lg font-bold mb-2">Learn English for Daily Conversation</h2>
-                    <p class="text-gray-500 mb-2">Tutor: Michael Johnson</p>
-                    <p class="text-gray-500 mb-2">Experience: 6 years</p>
-                    <p class="text-blue-500 font-bold mb-2">IDR 400.000</p>
-                <button class="bg-blue-500 text-white p-2 rounded-md" onclick="openPopup()">Details</button>
-            </div>
-            <!-- Card 4 -->
-            <div class="bg-white p-4 rounded-md shadow-md card">
-                <img alt="Tutor Image" class="w-full h-48 object-cover rounded-md mb-4"
-                    src="https://storage.googleapis.com/a1aa/image/XpzFTepm4hW6M67e48rOBwitseVFiinZ5EM9bYsAhepKIqAPB.jpg"
-                    width="150" />
-                    <h2 class="text-lg font-bold mb-2">History: Understanding the Past</h2>
-                    <p class="text-gray-500 mb-2">Tutor: Emily Davis</p>
-                    <p class="text-gray-500 mb-2">Experience: 9 years</p>
-                    <p class="text-blue-500 font-bold mb-2">IDR 470.000</p>
-                <button class="bg-blue-500 text-white p-2 rounded-md" onclick="openPopup()">Details</button>
-            </div>
-            <!-- Card 5 -->
-            <div class="bg-white p-4 rounded-md shadow-md card">
-                <img alt="Tutor Image" class="w-full h-48 object-cover rounded-md mb-4"
-                    src="https://storage.googleapis.com/a1aa/image/XpzFTepm4hW6M67e48rOBwitseVFiinZ5EM9bYsAhepKIqAPB.jpg"
-                    width="150" />
-                    <h2 class="text-lg font-bold mb-2">Physics for Beginners to Experts</h2>
-                    <p class="text-gray-500 mb-2">Tutor: Chris Wilson</p>
-                    <p class="text-gray-500 mb-2">Experience: 11 years</p>
-                    <p class="text-blue-500 font-bold mb-2">IDR 520.000</p>
-                <button class="bg-blue-500 text-white p-2 rounded-md" onclick="openPopup()">Details</button>
-            </div>
-            <!-- Card 6 -->
-            <div class="bg-white p-4 rounded-md shadow-md card">
-                <img alt="Tutor Image" class="w-full h-48 object-cover rounded-md mb-4"
-                    src="https://storage.googleapis.com/a1aa/image/XpzFTepm4hW6M67e48rOBwitseVFiinZ5EM9bYsAhepKIqAPB.jpg"
-                    width="150" />
-                    <h2 class="text-lg font-bold mb-2">Computer Science Fundamentals</h2>
-                    <p class="text-gray-500 mb-2">Tutor: Sarah Lee</p>
-                    <p class="text-gray-500 mb-2">Experience: 7 years</p>
-                    <p class="text-blue-500 font-bold mb-2">IDR 490.000</p>
-                <button class="bg-blue-500 text-white p-2 rounded-md" onclick="openPopup()">Details</button>
-            </div>
         </div>
     </div>
 
@@ -236,49 +186,89 @@
             sidebar.classList.toggle("-translate-x-full");
         });
 
-        function openPopup() {
-            const popup = document.getElementById('popup');
-            const popupContent = document.getElementById('popup-content');
-            popup.classList.remove('hidden');
-            setTimeout(() => {
-                popupContent.classList.add('scale-100', 'opacity-100');
-            }, 10);
-        }
+        // function openPopup() {
+        //     const popup = document.getElementById('popup');
+        //     const popupContent = document.getElementById('popup-content');
+        //     popup.classList.remove('hidden');
+        //     setTimeout(() => {
+        //         popupContent.classList.add('scale-100', 'opacity-100');
+        //     }, 10);
+        // }
 
-        function closePopup() {
-            const popup = document.getElementById('popup');
-            const popupContent = document.getElementById('popup-content');
-            popupContent.classList.remove('scale-100', 'opacity-100');
-            setTimeout(() => {
-                popup.classList.add('hidden');
-            }, 300);
-        }
+        // function closePopup() {
+        //     const popup = document.getElementById('popup');
+        //     const popupContent = document.getElementById('popup-content');
+        //     popupContent.classList.remove('scale-100', 'opacity-100');
+        //     setTimeout(() => {
+        //         popup.classList.add('hidden');
+        //     }, 300);
+        // }
 
-        $("#order").click(function(){
+        $("#order").click(function() {
             $.ajax({
-                    url: "{{ route('orders.store') }}",
-                    method: "POST",
-                    data: {
-                        katalog_id: 2,
-                        price: 500000,
-                        _token: $('meta[name="csrf-token"]').attr('content'),
-                    },
-                    
-                    success: function (response) {
-                        alert('order sukses');
-                    },
-                    error: function (xhr) {
-                        // Tangani validasi atau error lainnya
-                        let errors = xhr.responseJSON.errors;
-                        let message = 'Error: ';
-                        for (let key in errors) {
-                            message += errors[key][0] + ' ';
-                        }
-                        $('#response-message').text(message).css('color', 'red');
+                url: "{{ route('orders.store') }}",
+                method: "POST",
+                data: {
+                    katalog_id: 2,
+                    price: 500000,
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                },
+
+                success: function(response) {
+                    alert('order sukses');
+                },
+                error: function(xhr) {
+                    // Tangani validasi atau error lainnya
+                    let errors = xhr.responseJSON.errors;
+                    let message = 'Error: ';
+                    for (let key in errors) {
+                        message += errors[key][0] + ' ';
                     }
-                });
+                    $('#response-message').text(message).css('color', 'red');
+                }
             });
+        });
     </script>
+    <style>
+        .hidden {
+            display: none;
+        }
+        .visible {
+            display: flex;
+        }
+        .scale-100 {
+            transform: scale(1);
+            opacity: 1;
+        }
+        </style>
+        
+        <script>
+            function openPopup(id) {
+                const popup = document.getElementById(`popup-${id}`);
+                const popupContent = document.getElementById(`popup-content-${id}`);
+                popup.classList.remove('hidden');
+                popup.classList.add('visible');
+                setTimeout(() => {
+                    popupContent.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            }
+        
+            function closePopup(id) {
+                const popup = document.getElementById(`popup-${id}`);
+                const popupContent = document.getElementById(`popup-content-${id}`);
+                popupContent.classList.remove('scale-100', 'opacity-100');
+                setTimeout(() => {
+                    popup.classList.remove('visible');
+                    popup.classList.add('hidden');
+                }, 300);
+            }
+        
+            function boking(id) {
+                // alert(`Booking ID: ${id}`);
+                const form = document.getElementById(`form-action-${id}`);
+                form.submit();
+            }
+        </script>
 </body>
 
 </html>

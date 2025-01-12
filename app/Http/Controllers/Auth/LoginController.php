@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Auth;
+use illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 
@@ -63,7 +63,7 @@ class LoginController extends Controller
         }
 
         else if($user->role_id==2) {
-            return redirect()->intended('/guru');
+            return redirect()->intended('/kelas');
         }
 
         else if($user->role_id==3) {

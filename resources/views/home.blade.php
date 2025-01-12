@@ -44,7 +44,7 @@
                     @if(auth()->user()->role_id == 1)
                         <a class="bg-blue-500 text-white p-2" href="/user">Go to Dashboard</a>
                     @elseif(auth()->user()->role_id == 2)
-                        <a class="bg-blue-500 text-white  p-2" href="/guru">Go to Dashboard</a>
+                        <a class="bg-blue-500 text-white  p-2" href="/kelas">Go to Dashboard</a>
                     @else
                         <a class="bg-blue-500 text-white  p-2" href="/home">Go to Dashboard</a>
                     @endif
@@ -143,7 +143,7 @@
                     </div> -->
 
                     <!-- Image in the Center -->
-                    <div class="relative">
+                    <div class="relative -z-10">
                         <img class="rounded-lg" src="images/fotokitaaa.png" alt="Student Studying">
                     </div>
 
@@ -299,7 +299,7 @@
                         <ul class="space-y-1 text-gray-500">
                             <li><span>📍 Bojongsoang, Bandung Jawa Barat</span></li>
                             <li><span>📞 0819-1792-6078</span></li>
-                            <li><span>✉️ admin@temanpelajar.com</span></li>
+                            <li><span>✉ admin@temanpelajar.com</span></li>
                             <li><span>🕒 Jam Kerja: 09.00 - 17.00 WIB</span></li>
                         </ul>
                 </div>
